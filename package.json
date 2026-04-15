@@ -1,0 +1,11 @@
+{
+  "name": "canva-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild ./src/intents/design_editor/app.tsx --bundle --outfile=./dist/app.js --minify"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0"
+  }
+}

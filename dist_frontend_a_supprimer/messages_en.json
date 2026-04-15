@@ -1,0 +1,74 @@
+{
+  "+TOtT2": {
+    "defaultMessage": "Open Canva Apps SDK docs",
+    "description": "Button text to open Canva Apps SDK docs. Opens an external URL when pressed."
+  },
+  "+WE3mA": {
+    "defaultMessage": "Learn more",
+    "description": "This is a link label to open Spooqs homepage's URL."
+  },
+  "0n9CFm": {
+    "defaultMessage": "Processing media...",
+    "description": "Label for progress bar display. Explains that the media is being processed"
+  },
+  "35ooBv": {
+    "defaultMessage": "Downloading and processing selected media...",
+    "description": "This is a progress bar title label, indicating the loading step of the process."
+  },
+  "Bs4ZvY": {
+    "defaultMessage": "Uploading processed media to library...",
+    "description": "This is a progress bar title label, indicating the uploading step of the process."
+  },
+  "CUsAZ7": {
+    "defaultMessage": "Adding processed media to design...",
+    "description": "This is a progress bar title label, indicating the addding step of the process."
+  },
+  "DHT5ZL": {
+    "defaultMessage": "Please wait, processing videos can take a little longer than images",
+    "description": "This is a message indicating that video processing can take some time."
+  },
+  "HdKIhK": {
+    "defaultMessage": "Media processed.",
+    "description": "This is a progress bar title label, indicating the end of the process."
+  },
+  "Hq2Ipf": {
+    "defaultMessage": "Do something cool",
+    "description": "Button text to do something cool. Creates a new text element when pressed."
+  },
+  "UG39Jn": {
+    "defaultMessage": "Cancel",
+    "description": "This is a button label indicating that the selected media process can be cancelled."
+  },
+  "VFSJ/O": {
+    "defaultMessage": "Created by Spooqs.",
+    "description": "Spooqs is the name of the company that developed this app."
+  },
+  "WLxpPq": {
+    "defaultMessage": "To make changes to this app, edit the <code>src/app.tsx</code> file, then close and reopen the app in the editor to preview the changes.",
+    "description": "Instructions for how to make changes to the app. Do not translate <code>src/app.tsx</code>."
+  },
+  "Z7bsFy": {
+    "defaultMessage": "Maximum video duration: 10 seconds",
+    "description": "This is a message to inform that long duration videos would take too much time."
+  },
+  "hh/TFZ": {
+    "defaultMessage": "Blur faces",
+    "description": "This is a button label indicating that the selected media can be processed."
+  },
+  "ostuYh": {
+    "defaultMessage": "This feature is not supported in the current page",
+    "description": "Tooltip label for when a feature is not supported in the current design"
+  },
+  "sKEmei": {
+    "defaultMessage": "Adding processed media to design...",
+    "description": "This is a progress bar title label, indicating the adding step of the process."
+  },
+  "wJQBvo": {
+    "defaultMessage": "Select an image or video in your design",
+    "description": "This is a sentence describing to the user how to use the app."
+  },
+  "xi6WTE": {
+    "defaultMessage": "Blurring faces",
+    "description": "This is a title indicating that the selected media is being processed."
+  }
+}

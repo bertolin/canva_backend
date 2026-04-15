@@ -1,0 +1,12 @@
+.DS_Store
+.env
+.idea
+.ssl
+*.log*
+**/*/db.json
+node_modules
+exe/beatles.jpg
+exe/dummy.txt
+exe/face_blurring.exe
+/exe
+/dist
