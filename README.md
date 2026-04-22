@@ -23,7 +23,7 @@ La compilation utilise tsc avec la configuration de production :
 
 Code
 cd /home/bertolino/canva_face_blurring_staging/backend
-npx tsc -p tsconfig.prod.json
+npx tsc -p tsconfig.json
 Cette commande génère le fichier exécutable :
 
 Code
@@ -107,5 +107,5 @@ g++ -I./src -I/usr/local/include/onnxruntime-1.18.1 -I/usr/local/include/opencv4
 
 
 - test executable in the exe directory :
-./spooqs_face_blurring family.jpg family_blurred.jpg
-./spooqs_face_blurring amy.mp4 amy_blurred.mp4
+./face_blurring family.jpg family_blurred.jpg
+./face_blurring amy.mp4 amy_blurred.mp4
