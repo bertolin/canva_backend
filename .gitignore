@@ -10,3 +10,11 @@ exe/dummy.txt
 exe/face_blurring.exe
 /exe
 /dist
+.README.md.kate-swp
+backend/input/dummy.txt
+backend/input/image-unknown_user.jpg
+backend/middle/dummy.txt
+backend/output/dummy.txt
+backend/output/image-unknown_user.jpg
+backend/dist/server.js
+backend/dist/server.js

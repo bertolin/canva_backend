@@ -7,30 +7,23 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const child_process_1 = require("child_process");
 const util_1 = require("util");
-const os_1 = __importDefault(require("os"));
 const fs_1 = __importDefault(require("fs"));
 require("dotenv").config();
 const execPromise = (0, util_1.promisify)(child_process_1.exec);
 // -----------------------------------------------------------------------------
 // 1) DEV vs PROD
 // -----------------------------------------------------------------------------
-const isDev = os_1.default.platform() === "darwin" || os_1.default.platform() === "win32";
+const isDev = false;
 // -----------------------------------------------------------------------------
 // 2) CONSTANTES
 // -----------------------------------------------------------------------------
-const INPUT_DIR = isDev
-    ? "C:\\Users\\bertolip-admin\\Documents\\TMP\\"
-    : "/home/bertolino/canva_face_blurring_staging/input/";
-const OUTPUT_DIR = isDev
-    ? "C:\\Users\\bertolip-admin\\Documents\\TMP\\"
-    : "/home/bertolino/canva_face_blurring_staging/output/";
-const EXE_FILE = isDev
-    ? "C:\\Users\\bertolip-admin\\Documents\\canva_face_blurring\\exe\\face_blurring.exe"
-    : "/home/bertolino/videoptimize/exe/face_blurring";
+const INPUT_DIR = "/home/bertolino/canva_face_blurring_staging/backend/input/";
+const OUTPUT_DIR = "/home/bertolino/canva_face_blurring_staging/backend/output/";
+const EXE_FILE = "/home/bertolino/videoptimize/exe/face_blurring";
 const BASE_URL = "https://canva-videoptimize.univ-grenoble-alpes.fr";
 // -----------------------------------------------------------------------------
 // 3) AUTH (désactivée en dev)
-// -----------------------------------------------------------------------------
+// ---------------------------------------------------EXE_FILE--------------------------
 const authenticateUser = (req, res, next) => {
     if (isDev)
         return next();
@@ -77,7 +70,8 @@ const cleanupFiles = async (originalFilePath, processedFilePath, thumbnailFilePa
 // 5) MAIN
 // -----------------------------------------------------------------------------
 async function main() {
-    console.log("Démarrage du backend Canva (version du 14 avril 2026)");
+    let now = new Date();
+    console.log("Démarrage du backend Canva (version du ", now, ")");
     const app = (0, express_1.default)();
     // OPTIONS AVANT TOUT
     app.options("/api/*", (req, res) => {
@@ -112,6 +106,8 @@ async function main() {
             const originalFilename = `${mediaType}-${safeUserId}.${extension}`;
             const inputFilePath = path_1.default.join(INPUT_DIR, originalFilename);
             const outputFilePath = path_1.default.join(OUTPUT_DIR, processFile(originalFilename));
+            console.log("inputFilePath in server.ts =", inputFilePath);
+            console.log("outputFilePath in server.ts =", outputFilePath);
             await fs_1.default.promises.writeFile(inputFilePath, buffer);
             const faceBlurringCommand = `"${EXE_FILE}" "${inputFilePath}" "${outputFilePath}"`;
             const { stdout } = await execPromise(faceBlurringCommand);

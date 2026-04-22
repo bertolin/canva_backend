@@ -13,28 +13,19 @@ const execPromise = promisify(exec);
 // -----------------------------------------------------------------------------
 // 1) DEV vs PROD
 // -----------------------------------------------------------------------------
-const isDev = os.platform() === "darwin" || os.platform() === "win32";
+const isDev = false;
 
 // -----------------------------------------------------------------------------
 // 2) CONSTANTES
 // -----------------------------------------------------------------------------
-const INPUT_DIR = isDev
-  ? "C:\\Users\\bertolip-admin\\Documents\\TMP\\"
-  : "/home/bertolino/canva_face_blurring_staging/input/";
-
-const OUTPUT_DIR = isDev
-  ? "C:\\Users\\bertolip-admin\\Documents\\TMP\\"
-  : "/home/bertolino/canva_face_blurring_staging/output/";
-
-const EXE_FILE = isDev
-  ? "C:\\Users\\bertolip-admin\\Documents\\canva_face_blurring\\exe\\face_blurring.exe"
-  : "/home/bertolino/videoptimize/exe/face_blurring";
-
+const INPUT_DIR = "/home/bertolino/canva_face_blurring_staging/backend/input/";
+const OUTPUT_DIR = "/home/bertolino/canva_face_blurring_staging/backend/output/";
+const EXE_FILE = "/home/bertolino/videoptimize/exe/face_blurring";
 const BASE_URL = "https://canva-videoptimize.univ-grenoble-alpes.fr";
 
 // -----------------------------------------------------------------------------
 // 3) AUTH (désactivée en dev)
-// -----------------------------------------------------------------------------
+// ---------------------------------------------------EXE_FILE--------------------------
 const authenticateUser = (req: Request, res: Response, next: NextFunction) => {
   if (isDev) return next();
 
@@ -90,8 +81,10 @@ const cleanupFiles = async (
 // -----------------------------------------------------------------------------
 // 5) MAIN
 // -----------------------------------------------------------------------------
-async function main() {
-  console.log("Démarrage du backend Canva (version du 14 avril 2026)");
+async function main()
+{
+  let now = new Date();
+  console.log("Démarrage du backend Canva (version du " , now, ")" );
 
 const app = express();
 
@@ -136,6 +129,9 @@ app.use(express.json());
 
       const inputFilePath = path.join(INPUT_DIR, originalFilename);
       const outputFilePath = path.join(OUTPUT_DIR, processFile(originalFilename));
+
+      console.log("inputFilePath in server.ts =", inputFilePath);
+      console.log("outputFilePath in server.ts =", outputFilePath);
 
       await fs.promises.writeFile(inputFilePath, buffer);
 
