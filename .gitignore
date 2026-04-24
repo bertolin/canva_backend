@@ -18,3 +18,8 @@ backend/output/dummy.txt
 backend/output/image-unknown_user.jpg
 backend/dist/server.js
 backend/dist/server.js
+*.jpg
+*.mp4
+backend/work/dummy.txt
+backendmiddle/dummy.txt
+backend/videoframes/dummy.txt

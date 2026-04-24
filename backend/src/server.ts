@@ -84,7 +84,7 @@ const cleanupFiles = async (
 async function main()
 {
   let now = new Date();
-  console.log("Démarrage du backend Canva (version du " , now, ")" );
+  console.log("Démarrage du backend Canva (version du 24 avril 2026)" );
 
 const app = express();
 
@@ -130,12 +130,13 @@ app.use(express.json());
       const inputFilePath = path.join(INPUT_DIR, originalFilename);
       const outputFilePath = path.join(OUTPUT_DIR, processFile(originalFilename));
 
-      console.log("inputFilePath in server.ts =", inputFilePath);
-      console.log("outputFilePath in server.ts =", outputFilePath);
+      //console.log("inputFilePath in server.ts =", inputFilePath);
+      //console.log("outputFilePath in server.ts =", outputFilePath);
 
       await fs.promises.writeFile(inputFilePath, buffer);
 
       const faceBlurringCommand = `"${EXE_FILE}" "${inputFilePath}" "${outputFilePath}"`;
+      console.log("command ran by server.ts = ", faceBlurringCommand);
       const { stdout } = await execPromise(faceBlurringCommand);
 
       const faceCountMatch = stdout.match(/(\d+)\s+faces\s+detected/);
@@ -163,8 +164,6 @@ app.use(express.json());
       // IMAGE
       const RESULT_URL = `${BASE_URL}/tmp/${path.basename(outputFilePath)}`;
       console.log("RESULT_URL =", RESULT_URL);
-      console.log("inputFilePath =", inputFilePath);
-      console.log("outputFilePath =", outputFilePath);
       return res.status(200).send({
         message: "File processed",
         fileUrl: RESULT_URL,

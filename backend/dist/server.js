@@ -71,7 +71,7 @@ const cleanupFiles = async (originalFilePath, processedFilePath, thumbnailFilePa
 // -----------------------------------------------------------------------------
 async function main() {
     let now = new Date();
-    console.log("Démarrage du backend Canva (version du ", now, ")");
+    console.log("Démarrage du backend Canva (version du 24 avril 2026)");
     const app = (0, express_1.default)();
     // OPTIONS AVANT TOUT
     app.options("/api/*", (req, res) => {
@@ -106,10 +106,11 @@ async function main() {
             const originalFilename = `${mediaType}-${safeUserId}.${extension}`;
             const inputFilePath = path_1.default.join(INPUT_DIR, originalFilename);
             const outputFilePath = path_1.default.join(OUTPUT_DIR, processFile(originalFilename));
-            console.log("inputFilePath in server.ts =", inputFilePath);
-            console.log("outputFilePath in server.ts =", outputFilePath);
+            //console.log("inputFilePath in server.ts =", inputFilePath);
+            //console.log("outputFilePath in server.ts =", outputFilePath);
             await fs_1.default.promises.writeFile(inputFilePath, buffer);
             const faceBlurringCommand = `"${EXE_FILE}" "${inputFilePath}" "${outputFilePath}"`;
+            console.log("command ran by server.ts = ", faceBlurringCommand);
             const { stdout } = await execPromise(faceBlurringCommand);
             const faceCountMatch = stdout.match(/(\d+)\s+faces\s+detected/);
             const faceCount = faceCountMatch ? parseInt(faceCountMatch[1], 10) : 0;
@@ -129,8 +130,6 @@ async function main() {
             // IMAGE
             const RESULT_URL = `${BASE_URL}/tmp/${path_1.default.basename(outputFilePath)}`;
             console.log("RESULT_URL =", RESULT_URL);
-            console.log("inputFilePath =", inputFilePath);
-            console.log("outputFilePath =", outputFilePath);
             return res.status(200).send({
                 message: "File processed",
                 fileUrl: RESULT_URL,
