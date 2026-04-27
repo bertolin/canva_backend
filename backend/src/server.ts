@@ -178,39 +178,6 @@ app.use(express.json());
   });
 
   // ---------------------------------------------------------------------------
-  // ROUTE /api/cleanup
-  // ---------------------------------------------------------------------------
-  router.post("/cleanup", authenticateUser, async (req, res) => {
-    try {
-      const { originalFilename, isVideo } = req.body;
-
-      if (!originalFilename) {
-        return res.status(400).send({ error: "Original filename required" });
-      }
-
-      const originalFilePath = path.join(INPUT_DIR, originalFilename);
-      const processedFilePath = path.join(
-        OUTPUT_DIR,
-        processFile(originalFilename)
-      );
-
-      let thumbnailFilePath;
-      if (isVideo) {
-        thumbnailFilePath = path.join(
-          OUTPUT_DIR,
-          `thumbnail_${path.parse(processedFilePath).name}.jpg`
-        );
-      }
-
-      await cleanupFiles(originalFilePath, processedFilePath, thumbnailFilePath);
-
-      return res.status(200).send({ message: "Files cleaned up" });
-    } catch (error) {
-      return handleError(res, error as Error);
-    }
-  });
-
-  // ---------------------------------------------------------------------------
   // ROUTE /tmp (fichiers statiques)
   // ---------------------------------------------------------------------------
   app.use("/tmp", express.static(OUTPUT_DIR));
