@@ -23,3 +23,4 @@ backend/dist/server.js
 backend/work/dummy.txt
 backendmiddle/dummy.txt
 backend/videoframes/dummy.txt
+backend/thumbnails/dummy.txt

@@ -90,7 +90,7 @@ async function main() {
     // ---------------------------------------------------------------------------
     router.post("/download", authenticateUser, async (req, res) => {
         try {
-            const { sourceUrl, mediaType, userId } = req.body;
+            const { sourceUrl, userId, mediaType } = req.body;
             if (!sourceUrl) {
                 return res.status(400).send({ error: "sourceUrl is required" });
             }
@@ -103,7 +103,8 @@ async function main() {
             const isVideo = mediaType === "video";
             const extension = isVideo ? "mp4" : "jpg";
             const safeUserId = userId || "unknown_user";
-            const originalFilename = `${mediaType}-${safeUserId}.${extension}`;
+            const epoch = Math.floor(Date.now() / 1000);
+            const originalFilename = `${mediaType}-${safeUserId}-${epoch}.${extension}`;
             const inputFilePath = path_1.default.join(INPUT_DIR, originalFilename);
             const outputFilePath = path_1.default.join(OUTPUT_DIR, processFile(originalFilename));
             //console.log("inputFilePath in server.ts =", inputFilePath);
